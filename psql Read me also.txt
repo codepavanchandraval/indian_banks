@@ -1,0 +1,11 @@
+psql -U postgres -h localhost
+\q
+
+psql -U postgres -h localhost main < indian_banks.sql
+
+
+delete from branches where ifsc not in (select ifsc from branches  limit 10000);
+
+select * from branches;
+
+pg_dump -U postgres main > main.sql
